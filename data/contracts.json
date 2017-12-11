@@ -1,0 +1,11 @@
+[
+  {"target_name":"Butch Coolidge", "location":"Los Angeles", "photo":"https://goo.gl/LCquZj", "sec_level":3, "client_name":"Marcellus Wallace", "budget":40
+  },
+  {"target_name":"The Jaguar", "location":"Russian Embassy", "photo":"https://goo.gl/6JWsiv", "sec_level":9, "client_name":"Concerto", "budget":70},
+
+  {"target_name":"Norman Stansfield", "location":"Manhattan", "photo":"https://i.imgur.com/mdIk33E.jpg", "sec_level":7, "client_name":"Mathilda", "budget":35},
+  {
+  "target_name":"Santino D'Antonio", "location":"Continental Hotel", "photo":"https://goo.gl/fUPkYy", "sec_level":10, "client_name":"Winston", "budget":25},
+
+  {"target_name":"Sonny Valerio", "location":"Queens", "photo":"https://goo.gl/8DHYUS", "sec_level":4, "client_name":"Ray Vargo", "budget":10}
+]
