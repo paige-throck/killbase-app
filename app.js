@@ -1,25 +1,41 @@
 'use strict'
 
-const fs = require('fs');
-const path = require('path');
-const petsPath = path.join(__dirname, 'pets.json');
-
 const express = require('express');
-const router = express.Router();
-const app = express();
+const path = require('path');
 const port = process.env.PORT || 8000;
+
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
+
+const app = express();
 
 const assassinsRoute = require('./routes/assassins');
-const assignedContractsRoute = require('./routes/assignedContracts');
 const contractsRoute = require('./routes/contracts');
-const codeNamesRoute = require('./routes/codeNames');
-
-
 
 app.disable('x-powered-by');
 app.use(bodyParser.json());
 
 app.use('/assassins', assassinsRoute);
+app.use('/contracts', contractsRoute);
+
+app.use((_req, res) => {
+  res.sendStatus(404);
+});
+
+app.use((err, _req, res, _next) => {
+  if (err.status) {
+    return res
+      .status(err.status)
+      .set('Content-Type', 'text/plain')
+      .send(err.message);
+  }
+
+  console.error(err.stack);
+  res.sendStatus(500);
+});
+
+app.listen(port, () => {
+  console.log('Listening on port', port);
+});
 
 module.exports = app;
