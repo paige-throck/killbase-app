@@ -4,7 +4,12 @@ module.exports = {
 
   development: {
     client: 'pg',
-    connection: 'postgres://localhost/killbase_app',
+    connection: {
+      host: 'localhost',
+      database:'killbase_app',
+      user: 'paigethrockmorton',
+      password: ''
+    },
     migrations: {
       directory: './migrations'
     },

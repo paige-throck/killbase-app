@@ -1,22 +1,32 @@
-'use strict'
+'use strict';
 
 const express = require('express');
 const path = require('path');
 const port = process.env.PORT || 8000;
 
-const bodyParser = require('body-parser');
+const config = require('./knexfile.js')['development'];
+const knex = require('knex')(config);
+
 const morgan = require('morgan');
+const bodyParser = require('body-parser');
+
+const assassins = require('./routes/assassins');
+const contracts = require('./routes/contracts');
 
 const app = express();
 
-const assassinsRoute = require('./routes/assassins');
-const contractsRoute = require('./routes/contracts');
 
 app.disable('x-powered-by');
-app.use(bodyParser.json());
 
-app.use('/assassins', assassinsRoute);
-app.use('/contracts', contractsRoute);
+app.use(morgan('short'));
+app.use(bodyParser.json());
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+app.use(express.static(path.join('public')));
+
+app.use('/assassins', assassins);
+app.use('/contracts', contracts);
 
 app.use((_req, res) => {
   res.sendStatus(404);
@@ -38,4 +48,5 @@ app.listen(port, () => {
   console.log('Listening on port', port);
 });
 
+console.log('problem with app');
 module.exports = app;

@@ -1,9 +1,11 @@
 'use strict';
 
 const express = require('express');
-const Router = express.Router();
-const config = require('knexfile')['development'];
+const router = express.Router();
+const config = require('../knexfile.js')['development'];
 const knex = require('knex')(config);
 
 
-module.exports = Router;
+console.log('problem with contracts');
+
+module.exports = router;
