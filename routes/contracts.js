@@ -64,7 +64,19 @@ router.get('/:id', (req, res, next) => {
 
 //Delete Contract
 
-
+router.delete('/:id', (req, res, next) => {
+  knex('contracts')
+    .del()
+    .where('contracts.contract_id', req.params.id)
+    .then(function(results) {
+      console.log(results);
+      res.sendStatus(200);
+    })
+    .catch(function(error) {
+      console.log(error);
+      res.sendStatus(500);
+    });
+})
 
 //GET Assassins Assigned to Contract
 

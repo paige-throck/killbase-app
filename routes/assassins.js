@@ -96,11 +96,41 @@ router.patch('/:id', (req, res, next) => {
 
 //Delete Assassin
 
+// router.delete('/:id', (req, res, next) => {
+//   let artist;
+//
+//   knex('assassins')
+//     .where('assassins.ass_id', req.params.id)
+//     .first()
+//     .then((row) => {
+//       if (!row) {
+//         return next();
+//       }
+//
+//       assassin = row;
+//
+//       return knex('assassins')
+//         .del()
+//         .where('assassins.ass_id', req.params.id);
+//     })
+//     .then(() => {
+//       delete assassin.id;
+//       res.send(assassin);
+//     });
+//     .catch((err) => {
+//       next(err);
+//     });
+// });
+
+
+
 router.delete('/:id', (req, res, next) => {
   knex('assassins')
+    .del()
     .where('assassins.ass_id', req.params.id)
     .then(function(results) {
-      res.send(results);
+      // res.send(results);
+      res.sendStatus(200);
     })
     .catch(function(error) {
       console.log(error);
@@ -118,7 +148,11 @@ router.get('/:id/contracts', (req, res, next) => {
     .innerJoin('people as target_people', 'target_people.people_id', 'targets.person_id')
     .innerJoin('clients', 'clients.client_id', 'contracts.client_id')
     .innerJoin('people as client_people', 'client_people.people_id', 'clients.person_id')
-    .select({target:'target_people.full_name'}, {client:'client_people.full_name'}, 'targets.location', 'targets.sec_level')
+    .select({
+      target: 'target_people.full_name'
+    }, {
+      client: 'client_people.full_name'
+    }, 'targets.location', 'targets.sec_level')
     .where('assigned_contracts.ass_id', req.params.id)
     .then(function(results) {
       console.log(results);
