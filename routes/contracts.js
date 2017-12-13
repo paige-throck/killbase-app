@@ -54,6 +54,24 @@ router.get('/:id', (req, res, next) => {
 
 //Update Contract
 
+router.patch('/:id', (req, res, next) => {
+
+
+    .then(function() {
+      res.sendStatus(200);
+    })
+    .catch(function(error) {
+      console.log(error);
+      res.sendStatus(500);
+    });
+
+
+})
+
+
+
+//Complete Contract
+
 
 
 
@@ -106,17 +124,22 @@ router.get('/:id/assassins', (req, res, next) => {
 
 
 
-
 //Delete Assassin from Contract
 
 
-
-
-
-
-
-
-
+router.delete('/:id/ass_con', (req, res, next) => {
+  knex('assigned_contracts')
+    .del()
+    .where('assigned_contracts.ass_id', req.params.id)
+    .then(function(results) {
+      // res.send(results);
+      res.sendStatus(200);
+    })
+    .catch(function(error) {
+      console.log(error);
+      res.sendStatus(500);
+    });
+})
 
 
 module.exports = router;

@@ -43,7 +43,7 @@ router.get('/:id', (req, res, next) => {
 
 
 
-//Update-Edit Single Assasssin
+//Update Single Assasssin
 
 router.patch('/:id', (req, res, next) => {
 
@@ -79,50 +79,43 @@ router.patch('/:id', (req, res, next) => {
 
 //Create New Assassin
 
-// router.post('/', (req, res, next) => {
-//
-//
-//     .then(function() {
-//       res.sendStatus(200);
-//     })
-//     .catch(function(error) {
-//       console.log(error);
-//       res.sendStatus(500);
-//     });
-//
-//
-// })
+router.post('/', (req, res, next) => {
+  knex('people')
+    .insert({
+      full_name: req.body.full_name
+    })
+    .select('people_id')
+    .then(function('people_id'){
+      knex('assassins')
+      .insert({
+        person_id: 'people_id',
+        contact_info: req.body.contact_info,
+        weapon: req.body.weapon,
+        age: req.body.age,
+        price: req.body.price,
+        rating: req.body.rating,
+        kills: req.body.kills
+      })
+      .select('ass_id')
+    })
+    .then(function('ass_id'){
+      knex('code_names')
+      .insert({
+        code_name: req.body.code_name
+      })
+    })
+
+    .then(function() {
+      res.sendStatus(200);
+    })
+    .catch(function(error) {
+      console.log(error);
+      res.sendStatus(500);
+    });
+})
 
 
 //Delete Assassin
-
-// router.delete('/:id', (req, res, next) => {
-//   let artist;
-//
-//   knex('assassins')
-//     .where('assassins.ass_id', req.params.id)
-//     .first()
-//     .then((row) => {
-//       if (!row) {
-//         return next();
-//       }
-//
-//       assassin = row;
-//
-//       return knex('assassins')
-//         .del()
-//         .where('assassins.ass_id', req.params.id);
-//     })
-//     .then(() => {
-//       delete assassin.id;
-//       res.send(assassin);
-//     });
-//     .catch((err) => {
-//       next(err);
-//     });
-// });
-
-
 
 router.delete('/:id', (req, res, next) => {
   knex('assassins')
