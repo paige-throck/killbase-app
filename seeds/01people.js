@@ -23,7 +23,8 @@ exports.seed = function(knex, Promise) {
         {people_id:16, full_name:'Santino DAntonio', deceased:false},
         {people_id:17, full_name:'Sonny Valerio', deceased:false},
         {people_id:18, full_name:'Winston', deceased:false},
-        {people_id:19, full_name:'Ray Vargo', deceased:false}
+        {people_id:19, full_name:'Ray Vargo', deceased:false},
+        {people_id:20, full_name:'Sterling Archer', deceased:false}
       ]);
     });
   };

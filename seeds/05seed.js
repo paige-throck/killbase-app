@@ -22,7 +22,9 @@ exports.seed = function(knex, Promise) {
 
         {ass_id:8, code_name:'La Femme Nikita'},
 
-        {ass_id:9, code_name:'Solenya'}
+        {ass_id:9, code_name:'Solenya'},
+
+        {ass_id:10, code_name:'Bob Belcher'}
       ]);
     });
 };

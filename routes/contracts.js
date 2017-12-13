@@ -29,7 +29,6 @@ router.get('/', (req, res, next) => {
 })
 
 
-
 //GET Single Contract
 
 router.get('/:id', (req, res, next) => {
@@ -70,14 +69,12 @@ router.get('/:id', (req, res, next) => {
 //GET Assassins Assigned to Contract
 
 router.get('/:id/assassins', (req, res, next) => {
-  knex('contracts')
-    .innerJoin('contracts', 'contracts.contract_id', 'assigned_contracts.contract_id')
-    .innerJoin('targets', 'targets.target_id', 'contracts.target_id')
-    .innerJoin('people as target_people', 'target_people.people_id', 'targets.person_id')
-    .innerJoin('clients', 'clients.client_id', 'contracts.client_id')
-    .innerJoin('people as client_people', 'client_people.people_id', 'clients.person_id')
-    .select({target:'target_people.full_name'}, {client:'client_people.full_name'}, 'targets.location', 'targets.sec_level')
-    .where('assigned_contracts.ass_id', req.params.id)
+  knex('assigned_contracts')
+    .innerJoin('assassins', 'assigned_contracts.ass_id', 'assassins.ass_id')
+    .innerJoin('people', 'assassins.person_id', 'people.people_id')
+    .leftJoin('code_names', 'assassins.ass_id', 'code_names.ass_id')
+    .select('people.full_name', 'code_names.code_name', 'assassins.rating')
+    .where('assigned_contracts.contract_id', req.params.id)
     .then(function(results) {
       console.log(results);
       res.send(results);

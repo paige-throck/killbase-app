@@ -4,26 +4,6 @@ let clientsArr = [];
 exports.seed = function(knex, Promise) {
 return knex('contracts').del()
 
-  // .then(function() {
-  //   return knex('targets')
-  //   .select('target_id').then(function(target_id) {
-  //     target_id.forEach(function(id) {
-  //       console.log(typeof id);
-  //       // targetsArr.push(parseInt(Object.values(id)));
-  //     })
-  //   })
-  // })
-  // .then(function() {
-  //   console.log(targetsArr);
-  //   return knex('clients')
-  //   .select('client_id').then(function(client_id) {
-  //     client_id.forEach(function(id) {
-  //       console.log(typeof id);
-  //       // clientsArr.push(parseInt(id));
-  //
-  //     })
-  //   })
-  // })
   .then(function() {
     return knex('contracts').insert([{
         contract_id: 1,

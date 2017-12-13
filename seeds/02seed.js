@@ -20,7 +20,9 @@ exports.seed = function(knex, Promise) {
 
         {ass_id:8, person_id:8, contact_info:'nikita@gmail.com', weapon:'Silenced Pistols', age:28, price:30, rating:7, kills:32},
 
-        {ass_id:9, person_id:9, contact_info:'rsanchez@gmail.com', weapon:'Lasers and office supplies', age:60, price:0, rating:8, kills:24}
+        {ass_id:9, person_id:9, contact_info:'rsanchez@gmail.com', weapon:'Lasers and office supplies', age:60, price:0, rating:8, kills:24},
+
+        {ass_id:10, person_id:20, contact_info:'archer@gmail.com', weapon:'Whiskey Bottle', age:31, price:50, rating:8.5, kills:70}
       ]);
     });
 };
