@@ -22,11 +22,9 @@ router.get('/', (req, res, next) => {
     });
 })
 
-// SQL: select people.full_name, assassins.contact_info, assassins.weapon, assassins.age, assassins.price, assassins.rating, assassins.kills
-// from assassins left join people on people.people_id = assassins.person_id;
 
 
-//GET Sinlge Assassin
+//GET Single Assassin
 router.get('/:id', (req, res, next) => {
   knex('assassins')
     .select('people.full_name', 'code_names.code_name', 'assassins.contact_info', 'assassins.weapon', 'assassins.age', 'assassins.price', 'assassins.rating', 'assassins.kills')
@@ -42,30 +40,10 @@ router.get('/:id', (req, res, next) => {
     });
 })
 
-//Get Assigned Contracts for Single Assassin
-
-router.get('/:id/contracts', (req, res, next) => {
-  knex('assigned_contracts')
-    .innerJoin('contracts', 'contracts.contract_id', 'assigned_contracts.contract_id')
-    .innerJoin('targets', 'targets.target_id', 'contracts.target_id')
-    .innerJoin('people as target_people', 'target_people.people_id', 'targets.person_id')
-    .innerJoin('clients', 'clients.client_id', 'contracts.client_id')
-    .innerJoin('people as client_people', 'client_people.people_id', 'clients.person_id')
-    .select({target:'target_people.full_name'}, {client:'client_people.full_name'}, 'targets.location', 'targets.sec_level')
-    .where('assigned_contracts.ass_id', req.params.id)
-    .then(function(results) {
-      console.log(results);
-      res.send(results);
-    })
-    .catch(function(error) {
-      console.log(error);
-      res.sendStatus(500);
-    });
-
-})
 
 
-//Update Single Assasssin
+
+//Update-Edit Single Assasssin
 
 router.patch('/:id', (req, res, next) => {
 
@@ -118,7 +96,40 @@ router.patch('/:id', (req, res, next) => {
 
 //Delete Assassin
 
+router.delete('/:id', (req, res, next) => {
+  knex('assassins')
+    .where('assassins.ass_id', req.params.id)
+    .then(function(results) {
+      res.send(results);
+    })
+    .catch(function(error) {
+      console.log(error);
+      res.sendStatus(500);
+    });
+})
 
+
+//Get Active Contracts for Assassin
+
+router.get('/:id/contracts', (req, res, next) => {
+  knex('assigned_contracts')
+    .innerJoin('contracts', 'contracts.contract_id', 'assigned_contracts.contract_id')
+    .innerJoin('targets', 'targets.target_id', 'contracts.target_id')
+    .innerJoin('people as target_people', 'target_people.people_id', 'targets.person_id')
+    .innerJoin('clients', 'clients.client_id', 'contracts.client_id')
+    .innerJoin('people as client_people', 'client_people.people_id', 'clients.person_id')
+    .select({target:'target_people.full_name'}, {client:'client_people.full_name'}, 'targets.location', 'targets.sec_level')
+    .where('assigned_contracts.ass_id', req.params.id)
+    .then(function(results) {
+      console.log(results);
+      res.send(results);
+    })
+    .catch(function(error) {
+      console.log(error);
+      res.sendStatus(500);
+    });
+
+})
 
 
 module.exports = router;

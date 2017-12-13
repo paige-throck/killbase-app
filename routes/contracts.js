@@ -7,7 +7,7 @@ const knex = require('knex')(config);
 
 
 
-//GET contracts
+//GET Contracts
 
 router.get('/', (req, res, next) => {
   knex('contracts')
@@ -53,17 +53,58 @@ router.get('/:id', (req, res, next) => {
 })
 
 
-//GET Assasins Assigned to Contract
+//Update Contract
 
 
-// Assign Assassin to Contracts
 
 
-//Update Contracts
+//Create Contract
 
-//Create Contracts
+
+
 
 //Delete Contract
+
+
+
+//GET Assassins Assigned to Contract
+
+router.get('/:id/assassins', (req, res, next) => {
+  knex('contracts')
+    .innerJoin('contracts', 'contracts.contract_id', 'assigned_contracts.contract_id')
+    .innerJoin('targets', 'targets.target_id', 'contracts.target_id')
+    .innerJoin('people as target_people', 'target_people.people_id', 'targets.person_id')
+    .innerJoin('clients', 'clients.client_id', 'contracts.client_id')
+    .innerJoin('people as client_people', 'client_people.people_id', 'clients.person_id')
+    .select({target:'target_people.full_name'}, {client:'client_people.full_name'}, 'targets.location', 'targets.sec_level')
+    .where('assigned_contracts.ass_id', req.params.id)
+    .then(function(results) {
+      console.log(results);
+      res.send(results);
+    })
+    .catch(function(error) {
+      console.log(error);
+      res.sendStatus(500);
+    });
+
+})
+
+
+
+//Assign Assassin to Contract
+
+
+
+
+
+
+//Delete Assassin from Contract
+
+
+
+
+
+
 
 
 
