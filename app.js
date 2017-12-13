@@ -48,5 +48,5 @@ app.listen(port, () => {
   console.log('Listening on port', port);
 });
 
-console.log('problem with app');
+
 module.exports = app;

@@ -20,6 +20,8 @@ exports.seed = function(knex, Promise) {
 
         {ass_id:8, code_name:'Nikita'},
 
+        {ass_id:8, code_name:'La Femme Nikita'},
+
         {ass_id:9, code_name:'Solenya'}
       ]);
     });
