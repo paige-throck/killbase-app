@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('./partials/head') %>
+  <body>
+
+<div class ="container">
+    <h1>ASSASSINS</h1>
+  <div class="row">
+    <div class="col col-sm-12">
+      <ul>
+        <% assassins.forEach(function(assassin) { %>
+            <li><%= assassin.full_name %></li>
+            <li><%= assassin.code_name %></li>
+            <li><%= assassin.contact_info %></li>
+            <li><%= assassin.weapon%></li>
+            <li><%= assassin.age%></li>
+            <li><%= assassin.price%></li>
+            <li><%= assassin.rating%></li>
+            <li><%= assassin.kills%></li>
+        <% }); %>
+        </ul>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+    <%- include('./partials/scripts') %>
+  </body>
+</html>

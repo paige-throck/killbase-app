@@ -1,11 +1,52 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+
+<head>
+  <%- include('./partials/head') %>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="section"></div>
+    <div class="row">
+      <div class="col col-sm-4">
+
+      </div>
+      <div class="col col-sm-4">
+        <h1>KILLBASE</h1>
+      </div>
+      <div class="col col-sm-4">
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col col-sm-4">
+        <h1>ASSASSINS</h1>
+
+        <div>
+        <a href="assassins" class=class="btn btn-success">ASSASSINS</a>
+        </div>
+
+
+      </div>
+      <div class="col col-sm-4">
+      </div>
+      <div class="col col-sm-4">
+        <h1>CONTRACTS</h1>
+        <div>
+        <a href="contracts" class=class="btn btn-success">CONTRACTS</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <%- include('./partials/scripts') %>
+</body>
+
 </html>

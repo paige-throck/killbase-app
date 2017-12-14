@@ -7,6 +7,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 8000;
 
+
 const config = require('./knexfile.js')['development'];
 const knex = require('knex')(config);
 
@@ -21,13 +22,21 @@ app.use(express.static(path.join('public')));
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
+
+
 app.disable('x-powered-by');
 
 app.use(morgan('short'));
 app.use(bodyParser.json());
 
+
+
 app.use('/assassins', assassins);
 app.use('/contracts', contracts);
+
+app.get('/', function (req, res) {
+  res.render('index.ejs')
+});
 
 
 
@@ -42,7 +51,6 @@ app.use((err, _req, res, _next) => {
       .set('Content-Type', 'text/plain')
       .send(err.message);
   }
-
   console.error(err.stack);
   res.sendStatus(500);
 });

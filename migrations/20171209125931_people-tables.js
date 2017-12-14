@@ -1,7 +1,7 @@
 
 exports.up = function(knex, Promise) {
   return knex.schema.createTableIfNotExists('assassins', function(table){
-    table.increments('ass_id').primary();
+    table.increments('ass_id');
     table.integer('person_id').references('people.people_id').notNull().onDelete('cascade');
     table.string('contact_info').notNullable().defaultTo('Unknown');
     table.string('weapon').notNullable().defaultTo('Bare Hands');
@@ -12,7 +12,7 @@ exports.up = function(knex, Promise) {
   })
   .then(function(){
     return knex.schema.createTableIfNotExists('targets', function (table){
-      table.increments('target_id').primary();
+      table.increments('target_id');
       table.integer('person_id').references('people.people_id').notNull().onDelete('cascade');
       table.string('location').notNullable().defaultTo('Unknown');
       table.string('photo').notNullable().defaultTo('No Image Provided');
@@ -21,15 +21,8 @@ exports.up = function(knex, Promise) {
   })
   .then(function(){
     return knex.schema.createTableIfNotExists('clients', function (table){
+      table.increments('client_id');
       table.integer('person_id').references('people.people_id').notNull().onDelete('cascade');
-    })
-  })
-  .then(function(){
-    return knex.schema.createTableIfNotExists('roles', function(table){
-      table.integer('person_id').references('people.people_id').notNull().onDelete('cascade');
-      table.boolean('assassin');
-      table.boolean('target');
-      table.boolean('client');
     })
   })
 };
@@ -40,7 +33,5 @@ exports.down = function(knex, Promise) {
     return knex.schema.dropTableIfExists('targets')
   }).then(function(){
     return knex.schema.dropTableIfExists('clients')
-  }).then(function(){
-    return knex.schema.dropTableIfExists('roles');
   })
 };

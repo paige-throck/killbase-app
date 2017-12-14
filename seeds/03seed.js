@@ -1,19 +1,41 @@
+
+let targetId = [];
+let clientId = [];
+
 exports.seed = function(knex, Promise) {
-  // Deletes ALL existing entries
-  return knex('clients').del()
-    .then(function () {
-      // Inserts seed entries
-      return knex('clients').insert([
+return knex('contracts').del()
 
-        {person_id:11, client_id:1},
+  .then(function() {
+    return knex('contracts').insert([
+      {
+        target_id:targetId[0],
+        client_id:clientId[0],
+        budget: 40
+      },
 
-        {person_id:13, client_id:2},
+      {
+        target_id:targetId[1],
+        client_id:clientId[1],
+        budget: 70
+      },
 
-        {person_id:15, client_id:3},
+      {
+        target_id:targetId[2],
+        client_id:clientId[2],
+        budget: 35
+      },
 
-        {person_id:18, client_id:4},
+      {
+        target_id:targetId[3],
+        client_id:clientId[3],
+        budget: 25
+      },
 
-        {person_id:19, client_id:5}
-      ]);
-    });
-  };
+      {
+        target_id:targetId[4],
+        client_id:clientId[4],
+        budget: 10
+      }
+    ]);
+  })
+};

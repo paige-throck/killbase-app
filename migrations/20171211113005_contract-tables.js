@@ -2,7 +2,7 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTableIfNotExists('contracts', function(table){
 
-    table.increments('contract_id').primary();
+    table.increments('contract_id');
     table.integer('target_id').references('targets.target_id').onDelete('cascade');
     table.integer('client_id').references('clients.client_id').onDelete('cascade');
     table.integer('budget');

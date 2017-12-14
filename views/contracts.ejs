@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('./partials/head') %>
+  </head>
+  <body>
+
+  <div class ="container">
+        <h1>CONTRACTS</h1>
+      <div class="row">
+        <div class="col col-sm-12">
+          <ul>
+            <% contracts.forEach(function(contract) { %>
+                <li><%= contract.target %></li>
+                <li><%= contract.client %></li>
+                <li><%= contract.budget %></li>
+                <li><%= contract.location%></li>
+                <li><%= contract.sec_level%></li>
+                <li><%= contract.assassin%></li>
+            <% }); %>
+            </ul>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+  <%- include('./partials/scripts') %>
+  </body>
+</html>
