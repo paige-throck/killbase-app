@@ -81,56 +81,39 @@ router.patch('/assassins/:id', (req, res, next) => {
 })
 
 
-// Create New Assassin
-router.post('/', (req, res, next) => {
+router.post('/', (req,res) => {
+  const newPeople = {
+    full_name: req.body.full_name,
+    };
+  const newAssassin = {
+    contact_info: req.body.contact_info,
+    weapon: req.body.weapon,
+    age: parseInt(req.body.age),
+    price: parseInt(req.body.price),
+    rating: parseFloat(req.body.rating),
+    kills: parseInt(req.body.kills)
+  };
+  const newAssassinCodeName = {
+    code_name: req.body.code_name
+  };
 
-  knex('people')
-    .insert({
-      full_name: req.body.full_name
-    })
-    .returning('people_id')
-    .then(function(people_id) {
-      console.log(people_id)
-      let ids = [];
-      people_id.forEach(function(element) {
-        ids.push(element);
-        console.log(element)
-      })
-      return ids;
-      knex('assassins')
-        .insert({
-          person_id: ids[0],
-          contact_info: req.body.contact_info,
-          weapon: req.body.weapon,
-          age: req.body.age,
-          price: req.body.price,
-          rating: req.body.rating,
-          kills: req.body.kills
-        })
-        .returning('ass_id')
-
-    })
-    .then(function(ass_id) {
-      let assIds = [];
-      ass_id.forEach(function(element) {
-        assIds.push(element);
-        console.log(element)
-      })
-      return assIds;
-      knex('code_names')
-        .insert({
-          ass_id: assIds[0],
-          code_name: req.body.code_name
-        })
-      })
-    .then(function() {
-      res.sendStatus(200);
-    })
-    .catch(function(error) {
-      console.log(error);
-      res.sendStatus(500);
-    });
-})
+ knex('people').insert(newPeople).returning('*')
+  .then( (people) => {
+    newAssassin.person_id = people[0].people_id;
+    return knex('assassins').insert(newAssassin).returning('*')
+  })
+  .then((assassins) => {
+    newAssassinCodeName.ass_id = assassins[0].ass_id;
+    return knex('code_names').insert(newAssassinCodeName)
+  })
+  .then(() => {
+    res.redirect('/all');
+  })
+  .catch(function (error) {
+    console.log(error);
+    res.sendStatus(500);
+  });
+});
 
 
 //Delete Assassin

@@ -14,17 +14,17 @@ exports.seed = function(knex, Promise) {
     })
 
     .then(function() {
-      let peop = knex.select('people_id').from('people').then(function(result) {
-        return result;
-      });
-      return peop;
+      knex.select('people_id').from('people')
+      .returning('people_id')
     })
-    .then(function(number) {
 
-      number.forEach(function(id) {
-        ids.push(parseInt(Object.values(id)));
-      });
-
+    .then(function(people_id) {
+      let ids = [];
+      people_id.forEach(function(element) {
+        ids.push(element);
+        console.log(element)
+      })
+      return ids;
       return knex('assassins').insert([{
           person_id: ids[0],
           weapon: 'Sniper Rifle',
