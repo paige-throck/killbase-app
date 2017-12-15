@@ -47,8 +47,6 @@ router.get('/assassins/:id', (req, res, next) => {
 })
 
 
-
-
 //Update Single Assasssin
 
 router.patch('/assassins/:id', (req, res, next) => {
@@ -84,18 +82,24 @@ router.patch('/assassins/:id', (req, res, next) => {
 
 
 // Create New Assassin
-
 router.post('/', (req, res, next) => {
+
   knex('people')
     .insert({
       full_name: req.body.full_name
     })
     .returning('people_id')
     .then(function(people_id) {
-			console.log("(^*^)>>", people_id, "<<(^*^)");
+      console.log(people_id)
+      let ids = [];
+      people_id.forEach(function(element) {
+        ids.push(element);
+        console.log(element)
+      })
+      return ids;
       knex('assassins')
         .insert({
-					person_id:people_id,
+          person_id: ids[0],
           contact_info: req.body.contact_info,
           weapon: req.body.weapon,
           age: req.body.age,
@@ -103,15 +107,22 @@ router.post('/', (req, res, next) => {
           rating: req.body.rating,
           kills: req.body.kills
         })
-				.returning('ass_id')
+        .returning('ass_id')
+
     })
     .then(function(ass_id) {
+      let assIds = [];
+      ass_id.forEach(function(element) {
+        assIds.push(element);
+        console.log(element)
+      })
+      return assIds;
       knex('code_names')
         .insert({
-					ass_id: ass_id,
+          ass_id: assIds[0],
           code_name: req.body.code_name
         })
-    })
+      })
     .then(function() {
       res.sendStatus(200);
     })

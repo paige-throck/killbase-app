@@ -106,7 +106,7 @@ exports.seed = function(knex, Promise) {
           rating: 8,
           kills: 24
         }
-      ]).returning(['ass_id']);
+      ]).returning('ass_id');
     })
     .then(function(people) {
       let ass = [];
