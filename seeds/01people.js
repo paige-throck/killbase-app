@@ -31,9 +31,6 @@ exports.seed = function(knex, Promise) {
           full_name: 'Pickle Rick'
         },
         {
-          full_name: 'Sterling Archer'
-        },
-        {
           full_name: 'Butch Coolidge'
         },
         {
@@ -43,7 +40,7 @@ exports.seed = function(knex, Promise) {
           full_name: 'Norman Stansfield'
         },
         {
-          full_name: 'Santino Dantonio'
+          full_name: 'Santino D\Antonio'
         },
         {
           full_name: 'Sonny Valerio'
@@ -60,10 +57,9 @@ exports.seed = function(knex, Promise) {
         {
           full_name: 'Winston'
         },
-
         {
           full_name: 'Ray Vargo'
         }
       ])
     })
-};
+}

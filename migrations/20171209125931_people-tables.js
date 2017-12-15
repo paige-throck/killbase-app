@@ -2,7 +2,7 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTableIfNotExists('assassins', function(table){
     table.increments('ass_id');
-    table.integer('person_id').references('people.people_id').notNull().onDelete('cascade');
+    table.integer('person_id').references('people.people_id').onDelete('cascade');
     table.string('contact_info').notNullable().defaultTo('Unknown');
     table.string('weapon').notNullable().defaultTo('Bare Hands');
     table.integer('age').notNullable();
