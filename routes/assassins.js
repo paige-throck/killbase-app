@@ -31,7 +31,7 @@ router.get('/', (req, res, next) => {
 
 
 //GET Single Assassin
-router.get('/assassins/:id', (req, res, next) => {
+router.get('/:id', (req, res, next) => {
   knex('assassins')
     .select('people.full_name', 'code_names.code_name', 'assassins.contact_info', 'assassins.weapon', 'assassins.age', 'assassins.price', 'assassins.rating', 'assassins.kills')
     .leftJoin('people', 'people.people_id', 'assassins.person_id')
@@ -49,7 +49,7 @@ router.get('/assassins/:id', (req, res, next) => {
 
 //Update Single Assasssin
 
-router.patch('/assassins/:id', (req, res, next) => {
+router.patch('/:id/edit', (req, res, next) => {
 
   let person = {};
   person.full_name = req.body.name;
@@ -81,7 +81,7 @@ router.patch('/assassins/:id', (req, res, next) => {
 })
 
 
-router.post('/', (req,res) => {
+router.post('/new', (req,res) => {
   const newPeople = {
     full_name: req.body.full_name,
     };
@@ -118,7 +118,7 @@ router.post('/', (req,res) => {
 
 //Delete Assassin
 
-router.delete('/assassins/:id', (req, res, next) => {
+router.delete('/:id', (req, res, next) => {
   knex('assassins')
     .del()
     .where('assassins.ass_id', req.params.id)
@@ -135,7 +135,7 @@ router.delete('/assassins/:id', (req, res, next) => {
 
 //Get Active Contracts for Assassin
 
-router.get('/assassins/:id/contracts', (req, res, next) => {
+router.get('/:id', (req, res, next) => {
   knex('assigned_contracts')
     .innerJoin('contracts', 'contracts.contract_id', 'assigned_contracts.contract_id')
     .innerJoin('targets', 'targets.target_id', 'contracts.target_id')

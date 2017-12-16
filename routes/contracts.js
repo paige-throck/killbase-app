@@ -67,18 +67,6 @@ router.get('/:id', (req, res, next) => {
 
 //Update Contract
 
-// router.patch('/:id', (req, res, next) => {
-//
-//
-//     .then(function() {
-//       res.sendStatus(200);
-//     })
-//     .catch(function(error) {
-//       console.log(error);
-//       res.sendStatus(500);
-//     });
-// })
-
 
 
 //Complete Contract
@@ -88,7 +76,50 @@ router.get('/:id', (req, res, next) => {
 
 //Create Contract
 
+  //Need to fix client for create
 
+router.post('/', (req,res) => {
+  const newPersonTarget = {
+    full_name: req.body.full_name,
+  };
+
+  const newPersonClient = {
+    full_name: req.body.full_name,
+  };
+
+  const newClient = {
+
+  };
+
+  const newTarget = {
+    location: req.body.location,
+    photo: req.body.photo,
+    sec_level: parseInt(req.body.sec_level)
+    };
+
+  const contract = {
+    budget: parseInt(req.body.budget),
+  };
+
+
+  knex('people').insert(newPersonTarget).returning('*')
+   .then( (people) => {
+     newTarget.person_id = people[0].people_id;
+     return knex('targets').insert(newTarget).returning('*')
+   })
+   .then((targets) => {
+     contract.target_id = targets[0].target_id;
+     return knex('contracts').insert(contract)
+   })
+
+   .then(() => {
+     res.redirect('/all');
+   })
+   .catch(function (error) {
+     console.log(error);
+     res.sendStatus(500);
+   });
+ });
 
 
 //Delete Contract
@@ -128,16 +159,15 @@ router.get('/:id/assassins', (req, res, next) => {
 })
 
 
-
 //Assign Assassin to Contract
 
+router.patch('/:id', (req, res, next)=>{
 
+})
 
 
 
 //Delete Assassin from Contract
-
-
 router.delete('/:id/ass_con', (req, res, next) => {
   knex('assigned_contracts')
     .del()
