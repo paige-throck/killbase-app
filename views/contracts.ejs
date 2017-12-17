@@ -11,12 +11,10 @@
         <div class="col col-sm-12">
           <ul>
             <% contracts.forEach(function(contract) { %>
-                <li><%= contract.target %></li>
-                <li><%= contract.client %></li>
+                <li><%= contract.full_name %></li>
                 <li><%= contract.budget %></li>
                 <li><%= contract.location%></li>
                 <li><%= contract.sec_level%></li>
-                <li><%= contract.assassin%></li>
             <% }); %>
             </ul>
         </div>

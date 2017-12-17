@@ -1,4 +1,5 @@
 let ids = [];
+let ass = [];
 exports.seed = function(knex, Promise) {
 
   // Deletes ALL existing entries
@@ -14,17 +15,15 @@ exports.seed = function(knex, Promise) {
     })
 
     .then(function() {
-      knex.select('people_id').from('people')
-      .returning('people_id')
+      return knex.select('people_id').from('people')
     })
-
     .then(function(people_id) {
-      let ids = [];
       people_id.forEach(function(element) {
-        ids.push(element);
-        console.log(element)
+      let index = 0;
+      let key = Object.keys(element)[index];
+      val = element[key];
+        ids.push(val);
       })
-      return ids;
       return knex('assassins').insert([{
           person_id: ids[0],
           weapon: 'Sniper Rifle',
@@ -106,103 +105,56 @@ exports.seed = function(knex, Promise) {
           rating: 8,
           kills: 24
         }
-      ]).returning('ass_id');
-    })
-    .then(function(people) {
-      let ass = [];
-      people.forEach(function(id) {
-        ass.push(parseInt(Object.values(id)));
-      })
-      return knex('code_names').insert([{
-          ass_id: ass[0],
-          code_name: 'The Jackal'
-        },
-        {
-          ass_id: ass[1],
-          code_name: 'Old Man'
-        },
-        {
-          ass_id: ass[2],
-          code_name: 'Ghost Dog'
-        },
-        {
-          ass_id: ass[3],
-          code_name: 'Unknown'
-        },
-        {
-          ass_id: ass[4],
-          code_name: 'Baba Yaga'
-        },
-        {
-          ass_id: ass[5],
-          code_name: 'Unknown'
-        },
-        {
-          ass_id: ass[6],
-          code_name: 'The Professional'
-        },
-        {
-          ass_id: ass[7],
-          code_name: 'Nikita'
-        },
-        {
-          ass_id: ass[7],
-          code_name: 'La Femme Nikita'
-        },
-        {
-          ass_id: ass[8],
-          code_name: 'Solenya'
-        }
       ])
     })
-    .then(function(id) {
+    .then(function(){
       return knex('targets').insert([{
-          person_id: (ids[9]),
+          person_id: ids[9],
           location: 'Los Angeles',
           photo: 'https://goo.gl/LCquZj',
           sec_level: 3
         },
         {
-          person_id: (ids[10]),
+          person_id: ids[10],
           location: 'Russian Embassy',
           photo: 'https://goo.gl/6JWsiv',
           sec_level: 9
         },
         {
-          person_id: (ids[11]),
+          person_id: ids[11],
           location: 'Manhattan',
           photo: 'https://i.imgur.com/mdIk33E.jpg',
           sec_level: 7
         },
         {
-          person_id: (ids[12]),
+          person_id: ids[12],
           location: 'Contintental Hotel',
           photo: 'https://goo.gl/fUPkYy',
           sec_level: 10
         },
         {
-          person_id: (ids[13]),
+          person_id: ids[13],
           location: 'Queens',
           photo: 'https://goo.gl/8DHYUS',
           sec_level: 4
         }
       ]);
-    }).then(function(id) {
+    }).then(function(){
       return knex('clients').insert([{
-          person_id: (ids[14]),
+          person_id: ids[14],
         },
         {
-          person_id: (ids[15]),
+          person_id: ids[15],
         },
         {
-          person_id: (ids[16]),
+          person_id: ids[16],
         },
         {
-          person_id: (ids[17]),
+          person_id: ids[17],
         },
         {
-          person_id: (ids[18]),
+          person_id: ids[18],
         }
       ])
-    });
+    })
 };
