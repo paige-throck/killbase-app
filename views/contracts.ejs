@@ -5,16 +5,40 @@
   </head>
   <body>
 
+    <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          <img alt="Brand" src="https://yt3.ggpht.com/-YkJAyrtS4YI/AAAAAAAAAAI/AAAAAAAAAAA/7W7YcQzY5bc/s100-c-k-no-mo-rj-c0xffffff/photo.jpg">
+        </a>
+      </div>
+      <h1><a href="/">KILLBASE</a></h1>
+       <a href="assassins">Assassins</a>
+    </div>
+    </nav>
+
   <div class ="container">
         <h1>CONTRACTS</h1>
       <div class="row">
         <div class="col col-sm-12">
           <ul>
             <% contracts.forEach(function(contract) { %>
-                <li><%= contract.full_name %></li>
-                <li><%= contract.budget %></li>
-                <li><%= contract.location%></li>
-                <li><%= contract.sec_level%></li>
+              <div class ="con row">
+                <div class ="col col-sm-4">
+                <li>Target Name: <%= contract.target %></li>
+                <li>Client Name: <%= contract.client %></li>
+              </div>
+                <div class ="col col-sm-4">
+                <li>Budget: <%= contract.budget %></li>
+                <li>Location: <%= contract.location%></li>
+                <li>Security Level: <%= contract.sec_level%></li>
+              </div>
+              <div class ="col col-sm-4">
+                <button type="button" class="btn btn-success">Edit</button>
+                <button type="button" class="btn btn-success">Delete</button>
+                  <button type="button" class="btn btn-success">Complete</button>
+              </div>
+            </div>
             <% }); %>
             </ul>
         </div>

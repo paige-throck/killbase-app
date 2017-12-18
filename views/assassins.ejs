@@ -2,22 +2,46 @@
 <html>
   <head>
     <%- include('./partials/head') %>
-  <body>
+
+<body>
+
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <img alt="Brand" src="https://yt3.ggpht.com/-YkJAyrtS4YI/AAAAAAAAAAI/AAAAAAAAAAA/7W7YcQzY5bc/s100-c-k-no-mo-rj-c0xffffff/photo.jpg">
+      </a>
+    </div>
+    <h1><a href="/">KILLBASE</a></h1>
+      <a href="contracts">Contracts</a>
+  </div>
+  </nav>
+
 
 <div class ="container">
-    <h1>ASSASSINS</h1>
+<h1>ASSASSINS</h1>
   <div class="row">
     <div class="col col-sm-12">
       <ul>
         <% assassins.forEach(function(assassin) { %>
-            <li><%= assassin.full_name %></li>
-            <li><%= assassin.code_name %></li>
-            <li><%= assassin.contact_info %></li>
-            <li><%= assassin.weapon%></li>
-            <li><%= assassin.age%></li>
-            <li><%= assassin.price%></li>
-            <li><%= assassin.rating%></li>
-            <li><%= assassin.kills%></li>
+          <div class ="ass row">
+            <div class = "col col-sm-4">
+            <li>Name: <%= assassin.full_name %></li>
+            <li>Code Name: <%= assassin.code_name %></li>
+            <li>Contact Info: <%= assassin.contact_info %></li>
+            <li>Weapon: <%= assassin.weapon%></li>
+          </div>
+          <div class = "col col-sm-4">
+            <li>Age: <%= assassin.age%></li>
+            <li>Price: <%= assassin.price%></li>
+            <li>Rating: <%= assassin.rating%></li>
+            <li>Num of Kills: <%= assassin.kills%></li>
+          </div>
+        <div class = "col col-sm-4">
+          <button type="button" class="btn btn-success">Edit</button>
+          <button type="button" class="btn btn-success">Delete</button>
+        </div>
+        </div>
         <% }); %>
         </ul>
     </div>
