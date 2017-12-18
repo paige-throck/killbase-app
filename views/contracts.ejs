@@ -13,20 +13,28 @@
         </a>
       </div>
       <h1><a href="/">KILLBASE</a></h1>
-       <a href="assassins">Assassins</a>
+        <a href="/assassins">Assassins | </a>
+        <a href ="/assassins/new">New Assassin | </a>
+        <a href ="/contracts/new">New Contract</a>
     </div>
     </nav>
 
   <div class ="container">
-        <h1>CONTRACTS</h1>
+        <h1><center>CONTRACTS</center></h1>
       <div class="row">
         <div class="col col-sm-12">
           <ul>
             <% contracts.forEach(function(contract) { %>
               <div class ="con row">
                 <div class ="col col-sm-4">
+
                 <li>Target Name: <%= contract.target %></li>
                 <li>Client Name: <%= contract.client %></li>
+
+                <a href="/contracts/<%= contract.contract_id%>">
+                <li>Contract: <%= contract.contract_id %></li>
+              </a>
+
               </div>
                 <div class ="col col-sm-4">
                 <li>Budget: <%= contract.budget %></li>
@@ -34,9 +42,14 @@
                 <li>Security Level: <%= contract.sec_level%></li>
               </div>
               <div class ="col col-sm-4">
-                <button type="button" class="btn btn-success">Edit</button>
-                <button type="button" class="btn btn-success">Delete</button>
-                  <button type="button" class="btn btn-success">Complete</button>
+
+                <a href="/contracts/<%= contract.contract_id%>/edit">
+                <button type="button" class="btn btn-primary">Edit</button>
+              </a>
+
+                <button type="button" class="btn btn-primary">Delete</button>
+
+                  <button type="button" class="btn btn-primary">Complete</button>
               </div>
             </div>
             <% }); %>

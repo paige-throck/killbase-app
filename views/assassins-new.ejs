@@ -1,19 +1,80 @@
 <!DOCTYPE html>
 <html>
-  <head>
-      <%- include('./partials/head') %>
-  </head>
-  <body>
-<%- include('./partials/head') %>
 
+<head>
+  <%- include('./partials/head') %>
+</head>
 
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          <img alt="Brand" src="https://yt3.ggpht.com/-YkJAyrtS4YI/AAAAAAAAAAI/AAAAAAAAAAA/7W7YcQzY5bc/s100-c-k-no-mo-rj-c0xffffff/photo.jpg">
+        </a>
+      </div>
+      <h1><a href="/">KILLBASE</a></h1>
+      <a href="/assassins">Assassins | </a>
+      <a href="/contracts">Contracts | </a>
+      <a href="/contracts/new">New Contract</a>
+    </div>
+  </nav>
 
+  <div class = "container">
+    <div class = "row">
+      <div class = "col col-sm-12">
+    <h1><center>CREATE NEW ASSASSIN</center></h1>
 
+  <form class ="newForm">
+
+      <div class = "row">
+        <div class = "col col-sm-4">
+
+      <div class="form-updateAss">
+        <label>Name</label>
+        <input type="name" placeholder="">
+      </div>
+
+      <div class="form-updateAss">
+        <label>Code Name</label>
+        <input type="name" placeholder="">
+      </div>
+
+      <div class="form-updateAss">
+        <label>Contact Info</label>
+        <input type="name" placeholder="">
+      </div>
+
+      <div class="form-updateAss">
+        <label>Weapon</label>
+        <input type="name" placeholder="">
+      </div>
+    </div>
+  <div class = "col col-sm-4">
+      <div class="form-updateAss">
+        <label>Age</label>
+        <input type="name" placeholder="">
+      </div>
+
+      <div class="form-updateAss">
+        <label>Rating</label>
+        <input type="name" placeholder="">
+      </div>
+
+      <div class="form-updateAss">
+        <label>Number of Kills</label>
+        <input type="name" placeholder="">
+      </div>
+  </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 
 
 
 
 
   <%- include('./partials/scripts') %>
-  </body>
+</body>
+
 </html>

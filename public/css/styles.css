@@ -1,7 +1,24 @@
 .ass {
-  margin-bottom:5%
+  margin-bottom: 2%; padding:1%; border-style:solid;
 }
 
-.con{
-  margin-bottom:5%
+.con {
+  margin-bottom: 2%; padding:1%; border-style:solid;
+}
+
+.activeCon{
+  margin-bottom: 2%; padding:1%; border-style:solid;
+}
+
+.assCon{
+  margin-bottom: 2%; padding:1%; border-style:solid;
+}
+
+
+.newForm{
+  margin-bottom: 2%; padding:1%; border-style:solid;
+}
+
+.updateForm{
+    margin-bottom: 2%; padding:1%; border-style:solid;
 }

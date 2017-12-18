@@ -1,17 +1,108 @@
 <!DOCTYPE html>
 <html>
-  <head>
-      <%- include('./partials/head') %>
-  </head>
-  <body>
-    <h1>Hello, world!</h1>
+
+<head>
+  <%- include('./partials/head') %>
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <img alt="Brand" src="https://yt3.ggpht.com/-YkJAyrtS4YI/AAAAAAAAAAI/AAAAAAAAAAA/7W7YcQzY5bc/s100-c-k-no-mo-rj-c0xffffff/photo.jpg">
+      </a>
+    </div>
+    <h1><a href="/">KILLBASE</a></h1>
+      <a href="/assassins">Assassins | </a>
+      <a href ="/assassins/new">New Assassin | </a>
+      <a href="/contracts">Contracts | </a>
+      <a href ="/contracts/new">New Contract</a>
+  </div>
+  </nav>
 
 
+  <div class="container">
+    <h1><center>ASSASSIN</center></h1>
+    <div class="row">
+      <div class="col col-sm-12">
+        <ul>
+          <% assassin.forEach(function(assassin) { %>
+            <div class="ass row">
+              <div class="col col-sm-4">
+                <li> Name:
+                  <%= assassin.full_name %>
+                </li>
+                <li>Code Name:
+                  <%= assassin.code_name %>
+                </li>
+                <li>Contact Info:
+                  <%= assassin.contact_info %>
+                </li>
+                <li>Weapon:
+                  <%= assassin.weapon%>
+                </li>
+              </div>
+              <div class="col col-sm-4">
+                <li>Age:
+                  <%= assassin.age%>
+                </li>
+                <li>Price:
+                  <%= assassin.price%>
+                </li>
+                <li>Rating:
+                  <%= assassin.rating%>
+                </li>
+                <li>Num of Kills:
+                  <%= assassin.kills%>
+                </li>
+              </div>
+              <div class="col col-sm-4">
+
+                <a href="/assassins/<%= assassin.ass_id%>/edit">
+                <button type="button" class="btn btn-primary">Edit</button>
+              </a>
+                <button type="button" class="btn btn-primary">Delete</button>
+              </div>
+          </div>
+            <% }); %>
+        </ul>
 
 
+    <h1><center>ACTIVE CONTRACTS</center></h1>
+    <div class="row">
+      <div class="col col-sm-12">
+        <ul>
+          <% assassin.forEach(function(active) { %>
+            <div class="activeCon row">
+              <div class="col col-sm-4">
+                <li> Target Name:
+                  <%= active.target %>
+                </li>
+                <li>Client Name:
+                  <%= active.client %>
+                </li>
+              </div>
+              <div class="col col-sm-4">
+                <li>Location:
+                  <%= active.location%>
+                </li>
+                <li>Security Level:
+                  <%= active.sec_level%>
+                </li>
+
+              </div>
+            </div>
+            <% }); %>
+        </ul>
+      </div>
+    </div>
+  </div>
 
 
+    <%- include('./partials/scripts') %>
+</body>
 
-  <%- include('./partials/scripts') %>
-  </body>
 </html>
