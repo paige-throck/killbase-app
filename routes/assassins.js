@@ -5,7 +5,7 @@ const router = express.Router();
 const config = require('../knexfile.js')['development'];
 const knex = require('knex')(config);
 
-router.get('/new', (req, res, next)=>{
+router.get('/new', (req, res, next) => {
   res.render('assassins-new')
 })
 
@@ -13,7 +13,7 @@ router.get('/new', (req, res, next)=>{
 router.get('/', (req, res, next) => {
   console.log('working');
   knex('assassins')
-    .select('assassins.ass_id','people.full_name', 'code_names.code_name', 'assassins.contact_info', 'assassins.weapon', 'assassins.age', 'assassins.price', 'assassins.rating', 'assassins.kills')
+    .select('assassins.ass_id', 'people.full_name', 'code_names.code_name', 'assassins.contact_info', 'assassins.weapon', 'assassins.age', 'assassins.price', 'assassins.rating', 'assassins.kills')
     .leftJoin('people', 'people.people_id', 'assassins.person_id')
     .leftJoin('code_names', 'code_names.ass_id', 'assassins.ass_id')
     .then(function(assassinsArr) {
@@ -49,7 +49,7 @@ router.get('/:id', (req, res, next) => {
       console.log(error);
       res.sendStatus(500);
     })
-    .then(function(assassinObj){
+    .then(function(assassinObj) {
       knex('assigned_contracts')
         .innerJoin('contracts', 'contracts.contract_id', 'assigned_contracts.contract_id')
         .innerJoin('targets', 'targets.target_id', 'contracts.target_id')
@@ -63,44 +63,47 @@ router.get('/:id', (req, res, next) => {
         }, 'targets.location', 'targets.sec_level')
         .where('assigned_contracts.ass_id', req.params.id)
     })
-      .then(function(activeCon) {
-        console.log(activeCon);
-        res.render('assassin-single', {
-          assassin: assassinObj, active: activeCon}
+    .then(function(activeCon) {
+      console.log(activeCon);
+      res.render('assassin-single', {
+          assassin: assassinObj,
+          active: activeCon
+        }
 
-        );
-      })
-      .catch(function(error) {
-        console.log(error);
-        res.sendStatus(500);
-      });
+      );
+    })
+    .catch(function(error) {
+      console.log(error);
+      res.sendStatus(500);
+    });
 })
 
 
 //Update Single Assasssin
 
-router.get('/:id/edit', (req, res, next)=>{
+router.get('/:id/edit', (req, res, next) => {
   knex('assassins')
     .select('assassins.ass_id', 'people.full_name', 'code_names.code_name', 'assassins.contact_info', 'assassins.weapon', 'assassins.age', 'assassins.price', 'assassins.rating', 'assassins.kills')
     .leftJoin('people', 'people.people_id', 'assassins.person_id')
     .leftJoin('code_names', 'code_names.ass_id', 'assassins.ass_id')
     .where('assassins.ass_id', req.params.id)
-    .then(function(updateAssassin) {
+    .then(function(assassinObj) {
       console.log(assassinObj)
       res.render('assassins-update', {
-        assassin: updateAssassin
+        assassin: assassinObj
       });
     })
     .catch(function(error) {
       console.log(error);
       res.sendStatus(500);
     })
+  })
+
 
 router.put('/:id', (req, res, next) => {
-
   let person = {};
-  person.full_name = req.body.name;
-  delete req.body.name;
+  person.full_name = req.body.full_name;
+  delete req.body.full_name;
 
   let codeName = {};
   codeName.ass_id = req.params.id;
@@ -113,7 +116,6 @@ router.put('/:id', (req, res, next) => {
     ])
     .then(function(results) {
       let [assassin, code_name_id] = results;
-      console.log('Our assassin', assassin[0].person_id);
       return knex('people').update(person).where('people_id', assassin[0].person_id);
     })
     .then(function(updateAss) {
@@ -126,14 +128,13 @@ router.put('/:id', (req, res, next) => {
 
 })
 
-//Create Assassin
-//Get request up top
+//Create Assassin -Get request up top
 
 router.post('/', (req, res, next) => {
-console.log(req.body);
+  console.log(req.body);
   const newPeople = {
     full_name: req.body.full_name,
-    };
+  };
   const newAssassin = {
     contact_info: req.body.contact_info,
     weapon: req.body.weapon,
@@ -146,24 +147,24 @@ console.log(req.body);
     code_name: req.body.code_name
   };
 
- knex('people').insert(newPeople).returning('*')
-  .then((people) => {
+  knex('people').insert(newPeople).returning('*')
+    .then((people) => {
 
-    newAssassin.person_id = people[0].people_id;
-    return knex('assassins').insert(newAssassin).returning('*')
+      newAssassin.person_id = people[0].people_id;
+      return knex('assassins').insert(newAssassin).returning('*')
 
-  })
-  .then((assassins) => {
-    newCodeName.ass_id = assassins[0].ass_id;
-    return knex('code_names').insert(newCodeName)
-  })
-  .then(function() {
-    res.redirect('/assassins');
-  })
-  .catch(function (error) {
-    console.log(error);
-    res.redirect('/assassins');
-  });
+    })
+    .then((assassins) => {
+      newCodeName.ass_id = assassins[0].ass_id;
+      return knex('code_names').insert(newCodeName)
+    })
+    .then(function() {
+      res.redirect('/assassins');
+    })
+    .catch(function(error) {
+      console.log(error);
+      res.redirect('/assassins');
+    });
 });
 
 

@@ -25,56 +25,60 @@
     <div class="row">
       <div class="col col-sm-12">
         <h1> <center>UPDATE ASSASSIN</center></h1>
+      <% assassin.forEach(function(assassin) { %>
+        <form class="updateForm"  action="/assassins/<%assassin.ass_id%>/?_method=PUT" method="POST">
+<% }); %>
 
-        <form class="updateForm">
           <div class="row">
             <div class="col col-sm-4">
               <div class="form-updateAss">
                 <label>Name</label>
-                <input name="name" value="">
+                <input name="full_name" value="<%assassin.full_name%>">
               </div>
 
               <div class="form-updateAss">
                 <label>Code Name</label>
-                <input name="code_name" value="">
+                <input name="code_name" value="<%assassin.code_name%>">
               </div>
 
               <div class="form-updateAss">
                 <label>Contact Info</label>
-                <input name="contact_info" value="">
+                <input name="contact_info" value="<%assassin.contact_info%>">
               </div>
 
               <div class="form-updateAss">
                 <label>Weapon</label>
-                <input name="weapon" value="">
+                <input name="weapon" value="<%assassin.weapon%>">
               </div>
 
             </div>
             <div class="col col-sm-4">
               <div class="form-updateAss">
                 <label>Age</label>
-                <input name="age" value="">
+                <input name="age" value="<%assassin.age%>">
               </div>
 
               <div class="form-updateAss">
                 <label>Price</label>
-                <input name="price" placeholder="">
+                <input name="price" value="<%assassin.price%>">
               </div>
 
               <div class="form-updateAss">
                 <label>Rating</label>
-                <input name="rating" value="">
+                <input name="rating" value="<%assassin.rating%>">
               </div>
 
               <div class="form-updateAss">
                 <label>Kills</label>
-                <input name="kills" value="">
+                <input name="kills" value="<%assassin.kills%>">
               </div>
             </div>
 
             <div class="col col-sm-4">
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn
+               btn-primary">Submit</button>
             </div>
+
         </form>
 
 

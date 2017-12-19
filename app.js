@@ -30,7 +30,9 @@ app.disable('x-powered-by');
 app.use(morgan('short'));
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 
 
@@ -38,7 +40,7 @@ app.use('/assassins', assassins);
 app.use('/contracts', contracts);
 app.use(methodOverride('_method'))
 
-app.get('/', function (req, res) {
+app.get('/', function(req, res) {
   res.render('index.ejs')
 });
 

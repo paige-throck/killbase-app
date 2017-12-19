@@ -160,7 +160,7 @@ router.post('/', function(req, res) {
     })
     .catch(error => {
       console.log(error);
-      res.status(500)
+      res.redirect('/contracts')
     });
 })
 
@@ -282,7 +282,7 @@ router.patch('/:id', (req, res, next) => {
 
 //Complete Contract
 
-router.put('/:id', (req, res, next)=>{
+router.put('/:id', (req, res, next) => {
   knex('contracts')
 })
 
