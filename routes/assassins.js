@@ -31,8 +31,8 @@ router.get('/', (req, res, next) => {
 })
 
 
-
 //GET Single Assassin and Assigned Contracts
+
 router.get('/:id', (req, res, next) => {
   knex('assassins')
     .select('assassins.ass_id', 'people.full_name', 'code_names.code_name', 'assassins.contact_info', 'assassins.weapon', 'assassins.age', 'assassins.price', 'assassins.rating', 'assassins.kills')
@@ -77,7 +77,6 @@ router.get('/:id', (req, res, next) => {
 })
 
 
-
 //Update Single Assasssin
 
 router.get('/:id/edit', (req, res, next)=>{
@@ -114,11 +113,11 @@ router.put('/:id', (req, res, next) => {
 
 })
 
-
 //Create Assassin
 //Get request up top
 
 router.post('/', (req, res, next) => {
+console.log(req.body);
   const newPeople = {
     full_name: req.body.full_name,
     };
@@ -130,25 +129,27 @@ router.post('/', (req, res, next) => {
     rating: parseFloat(req.body.rating),
     kills: parseInt(req.body.kills)
   };
-  const newAssassinCodeName = {
+  const newCodeName = {
     code_name: req.body.code_name
   };
 
  knex('people').insert(newPeople).returning('*')
-  .then( (people) => {
+  .then((people) => {
+
     newAssassin.person_id = people[0].people_id;
     return knex('assassins').insert(newAssassin).returning('*')
+
   })
   .then((assassins) => {
-    newAssassinCodeName.ass_id = assassins[0].ass_id;
-    return knex('code_names').insert(newAssassinCodeName)
+    newCodeName.ass_id = assassins[0].ass_id;
+    return knex('code_names').insert(newCodeName)
   })
-  .then(function(newAss) {
-    res.render('assassins-new', {new: newAss});
+  .then(function() {
+    res.redirect('/assassins');
   })
   .catch(function (error) {
     console.log(error);
-    res.sendStatus(500);
+    res.redirect('/assassins');
   });
 });
 

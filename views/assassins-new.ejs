@@ -10,7 +10,7 @@
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="#">
-          <img alt="Brand" src="https://yt3.ggpht.com/-YkJAyrtS4YI/AAAAAAAAAAI/AAAAAAAAAAA/7W7YcQzY5bc/s100-c-k-no-mo-rj-c0xffffff/photo.jpg">
+          <img alt="Brand" src="https://yt3.ggpht.com/-cHMg7kQlNLo/AAAAAAAAAAI/AAAAAAAAAAA/2VoLKNYYLKM/s100-c-k-no-mo-rj-c0xffffff/photo.jpg">
         </a>
       </div>
       <h1><a href="/">KILLBASE</a></h1>
@@ -25,54 +25,56 @@
       <div class = "col col-sm-12">
     <h1><center>CREATE NEW ASSASSIN</center></h1>
 
-  <form class ="newForm">
+  <form class ="newForm" action="/assassins" method="POST">
 
       <div class = "row">
         <div class = "col col-sm-4">
 
       <div class="form-updateAss">
         <label>Name</label>
-        <input type="name" placeholder="">
+        <input name="full_name" placeholder="">
       </div>
 
       <div class="form-updateAss">
         <label>Code Name</label>
-        <input type="name" placeholder="">
+        <input name="code_name" placeholder="">
       </div>
 
       <div class="form-updateAss">
         <label>Contact Info</label>
-        <input type="name" placeholder="">
+        <input name="contact_info" placeholder="">
       </div>
 
       <div class="form-updateAss">
         <label>Weapon</label>
-        <input type="name" placeholder="">
+        <input name="weapon" placeholder="">
       </div>
     </div>
   <div class = "col col-sm-4">
       <div class="form-updateAss">
         <label>Age</label>
-        <input type="name" placeholder="">
+        <input name="age" placeholder="">
+      </div>
+
+      <div class="form-updateAss">
+        <label>Price</label>
+        <input name="price" placeholder="">
       </div>
 
       <div class="form-updateAss">
         <label>Rating</label>
-        <input type="name" placeholder="">
+        <input name="rating" placeholder="">
       </div>
 
       <div class="form-updateAss">
-        <label>Number of Kills</label>
-        <input type="name" placeholder="">
+        <label>Kills</label>
+        <input name="kills" placeholder="">
       </div>
   </div>
 
       <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
 
-
-
-
+  </form>
 
   <%- include('./partials/scripts') %>
 </body>

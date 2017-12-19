@@ -102,83 +102,6 @@ router.get('/:id', (req, res, next) => {
 
 })
 
-
-//Update Contract
-
-router.get('/:id/edit', (req, res, next) => {
-  res.render('contracts-update')
-})
-
-router.put('/:id', function(req, res) {
-  let ids = [];
-  const id = req.params.id;
-  const update = req.body
-
-
-  const targetName = {
-    full_name: update.target_name,
-  };
-
-  const clientName = {
-    full_name: update.client_name,
-  };
-
-  const target = {
-    location: update.location,
-    photo: update.photo,
-    sec_level: parseInt(update.sec_level)
-  };
-
-  const contract = {
-    budget: parseInt(update.budget)
-  };
-
-  return knex('contracts')
-    .where('contract_id', id)
-    .update(contract)
-    .returning('client_id')
-    .then(function(client_id) {
-      console.log(client_id);
-      return knex('clients')
-        .select('person_id')
-        .where('client_id', client_id[0])
-        .returning('*')
-    })
-    .then(function(data) {
-      console.log(data);
-      data.forEach(function(element) {
-        let index = 0;
-        let key = Object.keys(element)[index];
-        let val = element[key];
-        ids.push(val);
-        console.log(ids);
-      })
-      return knex('people')
-        .where('people_id', ids[0])
-        .update(clientName)
-    })
-    .then(function() {
-      return knex('targets')
-        .where('target_id', id)
-        .update(target)
-        .returning('person_id')
-    })
-    .then(function(person_id) {
-      console.log(person_id);
-      return knex('people')
-        .where('people_id', person_id)
-        .update(target)
-        .returning('person_id')
-    })
-    .then(function() {
-      res.redirect('/contracts')
-    })
-    .catch(function(error) {
-      console.log(error);
-    })
-})
-
-
 //Create Contract
 router.post('/', function(req, res) {
   const newContract = req.body;
@@ -241,6 +164,83 @@ router.post('/', function(req, res) {
     });
 })
 
+//Update Contract
+
+router.get('/:id/edit', (req, res, next) => {
+  res.render('contracts-update')
+})
+
+router.put('/:id', function(req, res) {
+  let ids = [];
+  const id = req.params.id;
+  const up = req.body
+
+
+  const targetName = {
+    full_name: up.full_name,
+  };
+
+  const clientName = {
+    full_name: up.full_name,
+  };
+
+  const target = {
+    location: up.location,
+    photo: up.photo,
+    sec_level: parseInt(up.sec_level)
+  };
+
+  const contract = {
+    budget: parseInt(up.budget)
+  };
+
+  return knex('contracts')
+    .where('contract_id', id)
+    .update(contract)
+    .returning('client_id')
+    .then(function(client_id) {
+      console.log(client_id);
+      return knex('clients')
+        .select('person_id')
+        .where('client_id', client_id[0])
+        .returning('*')
+    })
+    .then(function(data) {
+      console.log(data);
+      data.forEach(function(element) {
+        let index = 0;
+        let key = Object.keys(element)[index];
+        let val = element[key];
+        ids.push(val);
+        console.log(ids);
+      })
+      console.log(ids[0]);
+      return knex('people')
+        .where('people_id', ids[0])
+        .update(clientName)
+
+    })
+    .then(function() {
+      return knex('targets')
+        .where('target_id', id)
+        .update(target)
+        .returning('person_id')
+    })
+    .then(function(person_id) {
+      console.log(person_id);
+      return knex('people')
+        .where('people_id', person_id)
+        .update(targetName)
+        .returning('person_id')
+    })
+    .then(function() {
+      res.redirect('/contracts')
+    })
+    .catch(function(error) {
+      console.log(error);
+    })
+})
+
 
 //Delete Contract
 
@@ -259,15 +259,8 @@ router.delete('/:id', (req, res, next) => {
 })
 
 
-//Assign Assassin to Contract
-
-router.patch('/:id', (req, res, next) => {
-  knex('contracts')
-})
-
-
 //Delete Assassin from Contract
-router.delete('/:id/ass_con', (req, res, next) => {
+router.delete('/:id', (req, res, next) => {
   knex('assigned_contracts')
     .del()
     .where('assigned_contracts.ass_id', req.params.id)
@@ -281,6 +274,16 @@ router.delete('/:id/ass_con', (req, res, next) => {
     });
 })
 
+//Assign Assassin to Contract
+
+router.patch('/:id', (req, res, next) => {
+  knex('contracts')
+})
+
 //Complete Contract
+
+router.put('/:id', (req, res, next)=>{
+  knex('contracts')
+})
 
 module.exports = router;

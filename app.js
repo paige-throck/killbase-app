@@ -6,7 +6,7 @@ const path = require('path');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 8000;
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
 
 
 const config = require('./knexfile.js')['development'];
@@ -28,7 +28,9 @@ app.set('view engine', 'ejs');
 app.disable('x-powered-by');
 
 app.use(morgan('short'));
+
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 
 

@@ -1,10 +1,17 @@
+
 body {
   background: linear-gradient(to right, #8e9eab
 , #8e9eab);
 }
 
+.indexBody{
+  background:white;
+}
+
 .imgContainer{
   text-align: center;
+  margin: auto;
+
 }
 
 .ass {
