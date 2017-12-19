@@ -26,50 +26,55 @@
   <div class="container">
     <div class="row">
       <div class="col col-sm-12">
-        <h1> <center>UPDATE CONTRACT</center></h1>
+        <h1><center>UPDATE CONTRACT</center></h1>
+        <% contract.forEach(function(contract) { %>
+          <form class="updateForm">
+            <div class="row">
 
-        <form class="updateForm">
-          <div class="row">
-            <div class="col col-sm-4">
+              <div class="col col-sm-4">
+                <div class="form-updateAss">
+                  <label>Target Name</label>
+                  <input name="target" value="<%= contract.target %>">
+                </div>
 
-              <div class="form-updateAss">
-                <label>Target Name</label>
-                <input type="name" placeholder="">
+                <div class="form-updateAss">
+                  <label>Client Name</label>
+                  <input name="client" value="<%= contract.client %>">
+                </div>
               </div>
 
-              <div class="form-updateAss">
-                <label>Client Name</label>
-                <input type="name" placeholder="">
-              </div>
+              <div class="col col-sm-4">
+                  <div class="form-updateAss">
+                    <label>Budget</label>
+                    <input name="budget" value=" <%= contract.budget %>">
+                  </div>
 
-              <div class="form-updateAss">
-                <label>Location</label>
-                <input type="name" placeholder="">
-              </div>
+                  <div class="form-updateAss">
+                    <label>Location</label>
+                    <input name="location" value="<%= contract.location%>">
+                  </div>
 
-            </div>
+                  <div class="form-updateAss">
+                    <label>Security Level</label>
+                    <input name="sec_level" value="<%= contract.sec_level%>">
+                  </div>
 
-
-            <div class="col col-sm-4">
-              <div class="form-updateAss">
-                <label>Budget</label>
-                <input type="name" placeholder="">
-              </div>
-
-              <div class="form-updateAss">
-                <label>Security Level</label>
-                <input type="name" placeholder="">
               </div>
 
 
-            </div>
+            <div class = "col col-sm-4">
 
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-
-
-
-        <%- include('./partials/scripts') %>
+            <button name="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+          </form>
+          <% }); %>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  <%- include('./partials/scripts') %>
 </body>
 
 </html>

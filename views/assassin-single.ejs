@@ -64,7 +64,13 @@
                 <a href="/assassins/<%= assassin.ass_id%>/edit">
                 <button type="button" class="btn btn-primary">Edit</button>
               </a>
-                <button type="button" class="btn btn-primary">Delete</button>
+
+              <form method="POST" action="assassins/assassin.ass_id?_method=DELETE">
+              <button type="button" class="btn btn-primary">Delete</button>
+              </form>
+
+
+
               </div>
             </div>
             <% }); %>

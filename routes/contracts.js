@@ -167,7 +167,34 @@ router.post('/', function(req, res) {
 //Update Contract
 
 router.get('/:id/edit', (req, res, next) => {
-  res.render('contracts-update')
+  knex('contracts')
+    .innerJoin('targets', 'targets.target_id', 'contracts.target_id')
+    .innerJoin('people as target_people', 'target_people.people_id', 'targets.person_id')
+    .innerJoin('clients', 'clients.client_id', 'contracts.client_id')
+    .innerJoin('people as client_people', 'client_people.people_id', 'clients.person_id')
+    .leftJoin('assassins', 'contracts.completed_by', 'assassins.ass_id')
+    .leftJoin('people as assassin_people', 'assassin_people.people_id', 'assassins.person_id')
+    .select({
+        target: 'target_people.full_name'
+      }, {
+        client: 'client_people.full_name'
+      },
+
+      'contracts.contract_id',
+      'contracts.budget',
+      'targets.target_id',
+      'targets.location',
+      'targets.sec_level', {
+        assassin: 'assassin_people.full_name'
+      })
+    .where('contracts.contract_id', req.params.id)
+    .then(function(contractObj){
+      res.render('contracts-update', {contract: contractObj})
+  })
+  .catch(function(error) {
+    console.log(error);
+    res.sendStatus(500);
+  })
 })
 
 router.put('/:id', function(req, res) {
@@ -177,11 +204,11 @@ router.put('/:id', function(req, res) {
 
 
   const targetName = {
-    full_name: up.full_name,
+    full_name: up.target_name,
   };
 
   const clientName = {
-    full_name: up.full_name,
+    full_name: up.client_name,
   };
 
   const target = {
@@ -238,6 +265,7 @@ router.put('/:id', function(req, res) {
     })
     .catch(function(error) {
       console.log(error);
+      res.redirect('/contracts')
     })
 })
 

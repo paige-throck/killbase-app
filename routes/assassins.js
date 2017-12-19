@@ -5,9 +5,12 @@ const router = express.Router();
 const config = require('../knexfile.js')['development'];
 const knex = require('knex')(config);
 
+//GET route for new assassin
 router.get('/new', (req, res, next) => {
   res.render('assassins-new')
 })
+
+
 
 //GET All Assassins
 router.get('/', (req, res, next) => {
@@ -176,11 +179,11 @@ router.delete('/:id', (req, res, next) => {
     .where('assassins.ass_id', req.params.id)
     .then(function(results) {
       // res.send(results);
-      res.sendStatus(200);
+      res.redirect('/assassins');
     })
     .catch(function(error) {
       console.log(error);
-      res.sendStatus(500);
+      res.redirect('/assassins');
     });
 })
 
