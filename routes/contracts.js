@@ -188,13 +188,15 @@ router.get('/:id/edit', (req, res, next) => {
         assassin: 'assassin_people.full_name'
       })
     .where('contracts.contract_id', req.params.id)
-    .then(function(contractObj){
-      res.render('contracts-update', {contract: contractObj})
-  })
-  .catch(function(error) {
-    console.log(error);
-    res.sendStatus(500);
-  })
+    .then(function(contractObj) {
+      res.render('contracts-update', {
+        contract: contractObj
+      })
+    })
+    .catch(function(error) {
+      console.log(error);
+      res.sendStatus(500);
+    })
 })
 
 router.put('/:id', function(req, res) {

@@ -19,9 +19,9 @@ exports.seed = function(knex, Promise) {
     })
     .then(function(people_id) {
       people_id.forEach(function(element) {
-      let index = 0;
-      let key = Object.keys(element)[index];
-      val = element[key];
+        let index = 0;
+        let key = Object.keys(element)[index];
+        val = element[key];
         ids.push(val);
       })
       return knex('assassins').insert([{
@@ -107,7 +107,7 @@ exports.seed = function(knex, Promise) {
         }
       ])
     })
-    .then(function(){
+    .then(function() {
       return knex('targets').insert([{
           person_id: ids[9],
           location: 'Los Angeles',
@@ -139,7 +139,7 @@ exports.seed = function(knex, Promise) {
           sec_level: 4
         }
       ]);
-    }).then(function(){
+    }).then(function() {
       return knex('clients').insert([{
           person_id: ids[14],
         },

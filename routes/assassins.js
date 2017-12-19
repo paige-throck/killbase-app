@@ -100,7 +100,7 @@ router.get('/:id/edit', (req, res, next) => {
       console.log(error);
       res.sendStatus(500);
     })
-  })
+})
 
 
 router.put('/:id', (req, res, next) => {

@@ -7,28 +7,16 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 8000;
 const methodOverride = require('method-override');
-
-
 const config = require('./knexfile.js')['development'];
 const knex = require('knex')(config);
-
-
 const assassins = require('./routes/assassins');
 const contracts = require('./routes/contracts');
 
-
-
 app.use(express.static(path.join('public')));
-
 app.set('views', './views');
 app.set('view engine', 'ejs');
-
-
-
 app.disable('x-powered-by');
-
 app.use(morgan('short'));
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
@@ -43,8 +31,6 @@ app.use(methodOverride('_method'))
 app.get('/', function(req, res) {
   res.render('index.ejs')
 });
-
-
 
 app.use((_req, res) => {
   res.sendStatus(404);
