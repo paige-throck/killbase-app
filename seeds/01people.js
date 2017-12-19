@@ -40,7 +40,7 @@ exports.seed = function(knex, Promise) {
           full_name: 'Norman Stansfield'
         },
         {
-          full_name: 'Santino D\Antonio'
+          full_name: 'Santino D\'Antonio'
         },
         {
           full_name: 'Sonny Valerio'

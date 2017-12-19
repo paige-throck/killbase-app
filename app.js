@@ -34,20 +34,13 @@ app.use(bodyParser.json());
 
 app.use('/assassins', assassins);
 app.use('/contracts', contracts);
+app.use(methodOverride('_method'))
 
 app.get('/', function (req, res) {
   res.render('index.ejs')
 });
 
-app.use(bodyParser.urlencoded())
-app.use(methodOverride(function (req, res) {
-  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
-    // look in urlencoded POST bodies and delete it
-    var method = req.body._method
-    delete req.body._method
-    return method
-  }
-}))
+
 
 app.use((_req, res) => {
   res.sendStatus(404);

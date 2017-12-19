@@ -29,33 +29,32 @@
               <% assassins.forEach(function(assassin) { %>
                 <div class="ass row">
                   <div class="col col-sm-4">
-
-                    <li> Name:
+                    <li><strong>Name:</strong>
                       <a href="/assassins/<%= assassin.ass_id%>">
-                        <%= assassin.full_name %>
-                      </a>
+                      <%= assassin.full_name %>
+                    </a>
                     </li>
-                    <li>Code Name:
+                    <li><strong>Code Name:</strong>
                       <%= assassin.code_name %>
                     </li>
-                    <li>Contact Info:
+                    <li><strong>Contact Info:</strong>
                       <%= assassin.contact_info %>
                     </li>
-                    <li>Weapon:
+                    <li><strong>Weapon:</strong>
                       <%= assassin.weapon%>
                     </li>
                   </div>
                   <div class="col col-sm-4">
-                    <li>Age:
+                    <li><strong>Age:</strong>
                       <%= assassin.age%>
                     </li>
-                    <li>Price:
+                    <li><strong>Price:</strong>
                       <%= assassin.price%>
                     </li>
-                    <li>Rating:
+                    <li><strong>Rating:</strong>
                       <%= assassin.rating%>
                     </li>
-                    <li>Number of Kills:
+                    <li><strong>Kills:</strong>
                       <%= assassin.kills%>
                     </li>
                   </div>

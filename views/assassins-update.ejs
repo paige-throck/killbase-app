@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <%- include('./partials/head') %>
-  </head>
-  <body>
-    <nav class="navbar navbar-default">
+
+<head>
+  <%- include('./partials/head') %>
+</head>
+
+<body>
+  <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="#">
@@ -12,65 +14,66 @@
         </a>
       </div>
       <h1><a href="/">KILLBASE</a></h1>
-        <a href="/assassins">Assassins | </a>
-        <a href ="/assassins/new">New Assassin | </a>
-        <a href="/contracts">Contracts | </a>
-        <a href ="/contracts/new">New Contract</a>
+      <a href="/assassins">Assassins | </a>
+      <a href="/assassins/new">New Assassin | </a>
+      <a href="/contracts">Contracts | </a>
+      <a href="/contracts/new">New Contract</a>
     </div>
-    </nav>
+  </nav>
 
-  <div class = "container">
-    <div class = "row">
-      <div class = "col col-sm-12">
-    <h1> <center>UPDATE ASSASSIN</center></h1>
+  <div class="container">
+    <div class="row">
+      <div class="col col-sm-12">
+        <h1> <center>UPDATE ASSASSIN</center></h1>
 
-    <form class = "updateForm">
-      <div class = "row">
-        <div class = "col col-sm-4">
+        <form  class="updateForm">
+          <div class="row">
+            <div class="col col-sm-4">
+              <div class="form-updateAss">
+                <label>Name</label>
+                <input type="name" value="">
+              </div>
 
-      <div class="form-updateAss">
-        <label>Name</label>
-        <input type="name" placeholder="">
-      </div>
+              <div class="form-updateAss">
+                <label>Code Name</label>
+                <input type="name" value="">
+              </div>
 
-      <div class="form-updateAss">
-        <label>Code Name</label>
-        <input type="name" placeholder="">
-      </div>
+              <div class="form-updateAss">
+                <label>Contact Info</label>
+                <input type="name" value="">
+              </div>
 
-      <div class="form-updateAss">
-        <label>Contact Info</label>
-        <input type="name" placeholder="">
-      </div>
+              <div class="form-updateAss">
+                <label>Weapon</label>
+                <input type="name" value="">
+              </div>
+            </div>
+            <div class="col col-sm-4">
+              <div class="form-updateAss">
+                <label>Age</label>
+                <input type="name" value="">
+              </div>
 
-      <div class="form-updateAss">
-        <label>Weapon</label>
-        <input type="name" placeholder="">
-      </div>
-    </div>
-<div class = "col col-sm-4">
-      <div class="form-updateAss">
-        <label>Age</label>
-        <input type="name" placeholder="">
-      </div>
+              <div class="form-updateAss">
+                <label>Rating</label>
+                <input type="name" value="">
+              </div>
 
-      <div class="form-updateAss">
-        <label>Rating</label>
-        <input type="name" placeholder="">
-      </div>
-
-      <div class="form-updateAss">
-        <label>Number of Kills</label>
-        <input type="name" placeholder="">
-      </div>
-</div>
-
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-
-
+              <div class="form-updateAss">
+                <label>Num of Kills</label>
+                <input type="name" value="">
+              </div>
+            </div>
+            <div class="col col-sm-4">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
 
 
-    <%- include('./partials/scripts') %>
-  </body>
+
+
+        <%- include('./partials/scripts') %>
+</body>
+
 </html>

@@ -27,19 +27,19 @@
             <% contracts.forEach(function(contract) { %>
               <div class ="con row">
                 <div class ="col col-sm-4">
+                  <a href="/contracts/<%= contract.contract_id%>">
+                  <li><strong>Contract:</strong> <%= contract.contract_id %></li>
+                </a>
+                  <li><strong>Target Name:</strong> <%= contract.target %></li>
+                  <li><strong>Client Name:</strong> <%= contract.client %></li>
 
-                <li>Target Name: <%= contract.target %></li>
-                <li>Client Name: <%= contract.client %></li>
 
-                <a href="/contracts/<%= contract.contract_id%>">
-                <li>Contract: <%= contract.contract_id %></li>
-              </a>
 
               </div>
                 <div class ="col col-sm-4">
-                <li>Budget: <%= contract.budget %></li>
-                <li>Location: <%= contract.location%></li>
-                <li>Security Level: <%= contract.sec_level%></li>
+                  <li><strong>Budget:</strong> <%= contract.budget %></li>
+                  <li><strong>Location:</strong> <%= contract.location%></li>
+                  <li><strong>Security Level:</strong> <%= contract.sec_level%></li>
               </div>
               <div class ="col col-sm-4">
 
