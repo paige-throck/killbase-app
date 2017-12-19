@@ -9,18 +9,18 @@
 <body>
 
   <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
         <img alt="Brand" src="https://yt3.ggpht.com/-cHMg7kQlNLo/AAAAAAAAAAI/AAAAAAAAAAA/2VoLKNYYLKM/s100-c-k-no-mo-rj-c0xffffff/photo.jpg">
       </a>
-    </div>
-    <h1><a href="/">KILLBASE</a></h1>
+      </div>
+      <h1><a href="/">KILLBASE</a></h1>
       <a href="/assassins">Assassins | </a>
-      <a href ="/assassins/new">New Assassin | </a>
+      <a href="/assassins/new">New Assassin | </a>
       <a href="/contracts">Contracts | </a>
-      <a href ="/contracts/new">New Contract</a>
-  </div>
+      <a href="/contracts/new">New Contract</a>
+    </div>
   </nav>
 
 
@@ -66,43 +66,43 @@
               </a>
                 <button type="button" class="btn btn-primary">Delete</button>
               </div>
-          </div>
-            <% }); %>
-        </ul>
-
-
-    <h1><center>ACTIVE CONTRACTS</center></h1>
-    <div class="row">
-      <div class="col col-sm-12">
-        <ul>
-          <% assassin.forEach(function(active) { %>
-            <div class="activeCon row">
-              <div class="col col-sm-4">
-                <li><strong>Target Name:</strong>
-                  <%= active.target %>
-                </li>
-                <li><strong>Client Name:</strong>
-                  <%= active.client %>
-                </li>
-              </div>
-              <div class="col col-sm-4">
-                <li><strong>Location:</strong>
-                  <%= active.location%>
-                </li>
-                <li><strong>Security Level:</strong>
-                  <%= active.sec_level%>
-                </li>
-
-              </div>
             </div>
             <% }); %>
         </ul>
+
+
+        <h1><center>ACTIVE CONTRACTS</center></h1>
+        <div class="row">
+          <div class="col col-sm-12">
+            <ul>
+              <% assassin.forEach(function(active) { %>
+                <div class="activeCon row">
+                  <div class="col col-sm-4">
+                    <li><strong>Target Name:</strong>
+                      <%= active.target %>
+                    </li>
+                    <li><strong>Client Name:</strong>
+                      <%= active.client %>
+                    </li>
+                  </div>
+                  <div class="col col-sm-4">
+                    <li><strong>Location:</strong>
+                      <%= active.location%>
+                    </li>
+                    <li><strong>Security Level:</strong>
+                      <%= active.sec_level%>
+                    </li>
+
+                  </div>
+                </div>
+                <% }); %>
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
 
 
-    <%- include('./partials/scripts') %>
+      <%- include('./partials/scripts') %>
 </body>
 
 </html>

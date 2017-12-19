@@ -80,8 +80,21 @@ router.get('/:id', (req, res, next) => {
 //Update Single Assasssin
 
 router.get('/:id/edit', (req, res, next)=>{
-  res.render('assassins-update')
-})
+  knex('assassins')
+    .select('assassins.ass_id', 'people.full_name', 'code_names.code_name', 'assassins.contact_info', 'assassins.weapon', 'assassins.age', 'assassins.price', 'assassins.rating', 'assassins.kills')
+    .leftJoin('people', 'people.people_id', 'assassins.person_id')
+    .leftJoin('code_names', 'code_names.ass_id', 'assassins.ass_id')
+    .where('assassins.ass_id', req.params.id)
+    .then(function(updateAssassin) {
+      console.log(assassinObj)
+      res.render('assassins-update', {
+        assassin: updateAssassin
+      });
+    })
+    .catch(function(error) {
+      console.log(error);
+      res.sendStatus(500);
+    })
 
 router.put('/:id', (req, res, next) => {
 
@@ -104,11 +117,11 @@ router.put('/:id', (req, res, next) => {
       return knex('people').update(person).where('people_id', assassin[0].person_id);
     })
     .then(function(updateAss) {
-      res.render('assassins-update', {assassin: updateAss});
+      res.redirect('/assassins');
     })
     .catch(function(error) {
       console.log(error);
-      res.sendStatus(500);
+      res.redirect('/assassins');
     });
 
 })

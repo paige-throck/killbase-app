@@ -8,76 +8,93 @@
 <body>
 
   <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
         <img alt="Brand" src="https://yt3.ggpht.com/-cHMg7kQlNLo/AAAAAAAAAAI/AAAAAAAAAAA/2VoLKNYYLKM/s100-c-k-no-mo-rj-c0xffffff/photo.jpg">
       </a>
-    </div>
-    <h1><a href="/">KILLBASE</a></h1>
+      </div>
+      <h1><a href="/">KILLBASE</a></h1>
       <a href="/assassins">Assassins | </a>
-      <a href ="/assassins/new">New Assassin | </a>
+      <a href="/assassins/new">New Assassin | </a>
       <a href="/contracts">Contracts | </a>
-      <a href ="/contracts/new">New Contract</a>
-  </div>
+      <a href="/contracts/new">New Contract</a>
+    </div>
   </nav>
 
 
-<div class ="container">
-      <h1><center>CONTRACT</center></h1>
+  <div class="container">
+    <h1><center>CONTRACT</center></h1>
     <div class="row">
       <div class="col col-sm-12">
         <ul>
           <% contract.forEach(function(contract) { %>
-            <div class ="con row">
-              <div class ="col col-sm-4">
-              <li><strong>Target Name:</strong> <%= contract.target %></li>
-              <li><strong>Client Name:</strong> <%= contract.client %></li>
-            </div>
-              <div class ="col col-sm-4">
-              <li><strong>Budget:</strong> <%= contract.budget %></li>
-              <li><strong>Location:</strong> <%= contract.location%></li>
-              <li><strong>Security Level:</strong> <%= contract.sec_level%></li>
-            </div>
-            <div class ="col col-sm-4">
-              <a href="/contracts/<%= contract.contract_id%>/edit">
+            <div class="con row">
+              <div class="col col-sm-4">
+                <li><strong>Target Name:</strong>
+                  <%= contract.target %>
+                </li>
+                <li><strong>Client Name:</strong>
+                  <%= contract.client %>
+                </li>
+              </div>
+              <div class="col col-sm-4">
+                <li><strong>Budget:</strong>
+                  <%= contract.budget %>
+                </li>
+                <li><strong>Location:</strong>
+                  <%= contract.location%>
+                </li>
+                <li><strong>Security Level:</strong>
+                  <%= contract.sec_level%>
+                </li>
+              </div>
+              <div class="col col-sm-4">
+                <a href="/contracts/<%= contract.contract_id%>/edit">
               <button type="button" class="btn btn-primary">Edit</button>
             </a>
 
-              <button type="button" class="btn btn-primary">Delete</button>
+                <button type="button" class="btn btn-primary">Delete</button>
 
                 <button type="button" class="btn btn-primary">Complete</button>
+              </div>
             </div>
-          </div>
-          <% }); %>
-          </ul>
+            <% }); %>
+        </ul>
       </div>
     </div>
     <h1><center>CONTRACTED ASSASSINS</center></h1>
-  <div class="row">
-    <div class="col col-sm-12">
-      <ul>
-        <% contract.forEach(function(contract) { %>
-          <div class ="assCon row">
-            <div class ="col col-sm-4">
-            <li><strong>Name:</strong> <%= contract.full_name %></li>
-            <li><strong>Code Name:</strong> <%= contract.code_name %></li>
-            <li><strong>Rating:</strong> <%= contract.rating %></li>
-          </div>
-            <div class ="col col-sm-4">
+    <div class="row">
+      <div class="col col-sm-12">
+        <ul>
+          <% contract.forEach(function(contract) { %>
+            <div class="assCon row">
+              <div class="col col-sm-4">
+                <li><strong>Name:</strong>
+                  <%= contract.full_name %>
+                </li>
+                <li><strong>Code Name:</strong>
+                  <%= contract.code_name %>
+                </li>
+                <li><strong>Rating:</strong>
+                  <%= contract.rating %>
+                </li>
+              </div>
+              <div class="col col-sm-4">
+              </div>
+              <div class="col col-sm-4">
+                <button type="button" class="btn btn-primary">Remove</button>
+              </div>
             </div>
-          <div class ="col col-sm-4">
-            <button type="button" class="btn btn-primary">Remove</button>
-          </div>
-        </div>
-        <% }); %>
+            <% }); %>
         </ul>
 
+      </div>
     </div>
   </div>
-  </div>
 
 
-    <%- include('./partials/scripts') %>
-  </body>
+  <%- include('./partials/scripts') %>
+</body>
+
 </html>
