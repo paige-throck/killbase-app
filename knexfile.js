@@ -24,7 +24,6 @@ module.exports = {
       host: 'ec2-184-72-228-128.compute-1.amazonaws.com',
       database:'d36j6suc27t9pa',
       user: 'vibrabcqibkfey',
-      port: '5432',
       password: '33e8e63bf5bed22ea2b74318388ac75d78fa1bd5dd20c4ba87c81b616a4b6e38'
 
     },
