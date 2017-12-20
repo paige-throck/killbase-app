@@ -4,7 +4,7 @@
   "private": true,
   "main": "app.js",
   "scripts": {
-    "start": "nodemon"
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
@@ -13,6 +13,7 @@
     "debug": "~2.6.9",
     "ejs": "^2.5.7",
     "express": "^4.15.5",
+    "heroku": "^0.2.0",
     "knex": "^0.14.2",
     "method": "^2.0.0",
     "method-override": "^2.3.10",
