@@ -21,7 +21,6 @@
     "nodemon": "^1.12.5",
     "override": "0.0.1",
     "pg": "^7.4.0",
-    "serve-favicon": "~2.4.5",
-    
+    "serve-favicon": "~2.4.5"
   }
 }
