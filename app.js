@@ -24,9 +24,9 @@ app.use(bodyParser.urlencoded({
 
 
 
+app.use(methodOverride('_method'))
 app.use('/assassins', assassins);
 app.use('/contracts', contracts);
-app.use(methodOverride('_method'))
 
 app.get('/', function(req, res) {
   res.render('index.ejs')
