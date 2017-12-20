@@ -9,7 +9,7 @@ const port = process.env.PORT || 8000;
 const methodOverride = require('method-override');
 
 const environment = process.env.NODE_ENV || 'production';
-const config = require('../knexfile')[environment];
+const config = require('./knexfile')[environment];
 const knex = require('knex')(config);
 
 const assassins = require('./routes/assassins');
