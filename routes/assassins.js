@@ -11,7 +11,7 @@ const knex = require('knex')(config);
 
 router.get('/:id/edit', (req, res, next) => {
   knex('assassins')
-    .select('assassins.ass_id', 'people.full_name', 'code_names.code_name', 'assassins.contact_info', 'assassins.weapon', 'assassins.age', 'assassins.price', 'assassins.rating', 'assassins.kills')
+    .select('assassins.ass_id', 'people.full_name', 'code_names.code_name', 'assassins.contact_info', 'assassins.weapon', 'assassins.age', 'assassins.price', 'assassins.rating', 'assassins.kills').orderBy('assassins.ass_id')
     .leftJoin('people', 'people.people_id', 'assassins.person_id')
     .leftJoin('code_names', 'code_names.ass_id', 'assassins.ass_id')
     .where('assassins.ass_id', req.params.id)

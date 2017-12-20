@@ -243,11 +243,11 @@ router.put('/:id', function(req, res) {
         ids.push(val);
         console.log(ids);
       })
-      console.log(ids[0]);
-      return knex('people')
+
+       knex('people')
         .where('people_id', ids[0])
         .update(clientName)
-
+        console.log(ids[0]);
     })
     .then(function() {
       return knex('targets')
@@ -256,7 +256,7 @@ router.put('/:id', function(req, res) {
         .returning('person_id')
     })
     .then(function(person_id) {
-      console.log(person_id);
+
       return knex('people')
         .where('people_id', person_id)
         .update(targetName)
