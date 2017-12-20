@@ -7,8 +7,8 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 8000;
 const methodOverride = require('method-override');
-// const config = require('./knexfile.js')['development'];
-// const knex = require('knex')(config);
+const config = require('../knexfile')[process.env.ENVIRONMENT];
+const knex = require('knex')(config);
 const assassins = require('./routes/assassins');
 const contracts = require('./routes/contracts');
 
