@@ -1,18 +1,21 @@
-Killbase is a web application that has CRUD functionality.
+# Killbase
+
+An exercise on how to build a backend application with PostgreSQL, Knex, Express and connect that to a frontend application built with EJS, HTMl and Javascript.
 
 
+# Build-Tools:
 
-Github Repo:
-https://github.com/paige-throck/killbase-app
+PostgreSQL
+Express
+Knex
+EJS
+jQuery/ Javscript
+HTML
+CSS
+Bootstrap
 
-Issue Tracker:
-https://github.com/paige-throck/killbase-app/issues
 
-
-Tools:
-
-Postgress
-express
-knex
-ejs
-jquery/ javscript
+![alt tag](screenshots/home.png)
+![alt tag](screenshots/assassins.png)
+![alt tag](screenshots/contracts.png)
+![alt tag](screenshots/newContract.png)
